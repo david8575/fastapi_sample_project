@@ -1,0 +1,28 @@
+# FastAPI 및 서버 실행
+fastapi
+uvicorn[standard]
+
+# Pydantic (FastAPI에서 자동 설치되지만 명시)
+pydantic
+
+# 환경변수 관리
+python-dotenv
+
+# 비밀번호 해시 (bcrypt 포함)
+passlib[bcrypt]
+
+# JWT 토큰 (로그인 인증)
+python-jose[cryptography]
+
+# SQLAlchemy + 비동기 DB 연결
+sqlalchemy
+databases
+asyncpg  # PostgreSQL 사용할 경우
+
+# 파일 업로드
+python-multipart
+
+# 테스트용
+httpx
+pytest
+pytest-asyncio
