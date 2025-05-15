@@ -14,8 +14,8 @@ class UserRead(BaseModel):
     email: EmailStr
     bio: Optional[str] = None
     profile_image_url: Optional[str] = None
-    followers: List
-    following: List
+    followers: List[int] = []
+    following: List[int] = []
 
 # 로그인용 스키마
 class UserLogin(BaseModel):

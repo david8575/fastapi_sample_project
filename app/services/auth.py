@@ -35,7 +35,7 @@ fake_users_db = [
 def get_current_user(
     token: HTTPAuthorizationCredentials = Security(bearer_scheme)
 ):
-    token_str = token.credentials  # 실제 Bearer 토큰 문자열
+    token_str = token.credentials
 
     payload = verify_access_token(token_str)
     if not payload:
@@ -45,5 +45,8 @@ def get_current_user(
     user = next((u for u in fake_users_db if u["email"] == user_email), None)
     if not user:
         raise HTTPException(status_code=404, detail="사용자를 찾을 수 없습니다.")
+
+    user.setdefault("followers", [])
+    user.setdefault("following", [])
 
     return user
