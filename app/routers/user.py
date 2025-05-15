@@ -34,7 +34,7 @@ def create_user(user: UserCreate):
 def login(user: UserLogin):
     matched_user = next((u for u in fake_users_db if u["email"] == user.email), None)
     if not matched_user or not verify_password(user.password, matched_user["password"]):
-        raise HTTPException(status_code=401, detail="잘못된 이메일 또는 비밀번호입니다.")
+        raise HTTPException(status_code=401, detail="잘못된 이메일 또는 비밀번호")
 
     token = create_access_token({"sub": matched_user["email"]})
     return {
@@ -46,12 +46,12 @@ def login(user: UserLogin):
 def protected_route(request: Request):
     auth: str = request.headers.get("authorization")
     if not auth or not auth.startswith("Bearer "):
-        raise HTTPException(status_code=403, detail="권한이 없습니다.")
+        raise HTTPException(status_code=403, detail="권한이 없음")
     
     token = auth.split(" ")[1]
     payload = verify_access_token(token)
     if not payload:
-        raise HTTPException(status_code=403, detail="토큰이 유효하지 않습니다.")
+        raise HTTPException(status_code=403, detail="토큰이 유효하지 않음ㄴ.")
 
     return {
         "message": f"인증 성공 {payload['sub']}님 환영합니다."
