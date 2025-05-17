@@ -8,7 +8,7 @@ from app.services.jwt import create_access_token, verify_access_token
 
 router = APIRouter(prefix="/login", tags=["Auth"])
 
-@router.post("/login", response_model=Token)
+@router.post("/", response_model=Token)
 def login(user_cred: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == user_cred.email).first()
 
